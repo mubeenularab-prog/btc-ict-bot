@@ -171,7 +171,7 @@ while True:
             f"• *Open Interest:* {oi:,.2f} BTC"
         )
         
-        res = send_telegram_signal(msg)
+       res = send_telegram_signal(msg)
         if res.get("ok"):
             print(f"[{time.strftime('%H:%M:%S')}] Signal sent!")
         else:
