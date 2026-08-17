@@ -17,7 +17,8 @@ def keep_alive():
     t.start()
 
 # Flask Web Server-ஐ இயக்குகிறது
-keep_alive()import requests
+keep_alive()
+import requests
 import pandas as pd
 import numpy as np
 import time
