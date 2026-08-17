@@ -1,3 +1,5 @@
 requests
 pandas
 numpy
+Python-telegram-bot
+Flask
