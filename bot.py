@@ -172,16 +172,16 @@ while True:
         )
         
        res = send_telegram_signal(msg)
-    if res.get("ok"):
+       if res.get("ok"):
         print(f"[{time.strftime('%H:%M:%S')}] Signal sent!")
-    else:
+        else:
         print("Telegram Error:", res)
 
-    # Telegram Test Message
-    send_telegram_signal("🤖 Bot is active and checking markets!")
+        # Telegram Test Message
+        send_telegram_signal("🤖 Bot is active and checking markets!")
 
-except Exception as e:
-    print("Error occurred:", e)
+        except Exception as e:
+        print("Error occurred:", e)
 
-# Wait 15 minutes
-    time.sleep(900)
+        #Wait 15 minutes
+         time.sleep(900) # Wait 15 minutes
