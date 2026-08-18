@@ -143,7 +143,7 @@ def analyze_ict_full_suite():
 print("🚀 ICT Engine Bot is running in continuous Auto-Loop mode...")
 
 while True:
-   try:
+  try:
         msg = (
             f"🎯 *BTC ICT FULL SUITE ENGINE*\n"
             f"🎯 *Signal:* {signal}\n"
@@ -173,16 +173,10 @@ while True:
         else:
             print("Telegram Error:", res)
 
-   except Exception as e:
-        print("Error occurred:", e)
-       
-
-      except Exception as e:
+    except Exception as e:
         print("Error occurred:", e)
 
-    # --------------------------------------------------
     # Telegram Test Message
-    # --------------------------------------------------
     res_test = send_telegram_signal("Bot is active and checking markets!")
     print("Test Message Response:", res_test)
 
