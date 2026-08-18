@@ -144,11 +144,7 @@ print("🚀 ICT Engine Bot is running in continuous Auto-Loop mode...")
 
 while True:
     try:
-        price, signal, eq, ema200, fr, oi, in_discount, sl, tp, ah, al, lh, ll, nyh, nyl, fvg, ob, b_cisd, bear_cisd = analyze_ict_full_suite()
-        zone_str = "Discount Zone 🟢" if in_discount else "Premium Zone 🔴"
-        cisd_str = "Confirmed 🟢" if b_cisd else ("Confirmed 🔴" if bear_cisd else "None ➖")
-
-      msg = f"""🎯 *BTC ICT FULL SUITE ENGINE*
+        msg = f"""🎯 *BTC ICT FULL SUITE ENGINE*
 🎯 *Signal:* {signal}
 💰 *Current Price:* ${price:,.2f}
 🔑 *Zone:* {zone_str}
@@ -168,18 +164,19 @@ while True:
 📊 *Market Data:*
 💸 *Funding Rate:* {fr:.4f}%
 📊 *Open Interest:* {oi:,.2f} BTC"""
+
+        res = send_telegram_signal(msg)
+        if res.get("ok"):
             print(f"[{time.strftime('%H:%M:%S')}] Signal sent!")
         else:
             print("Telegram Error:", res)
+        print("Error occurred:", e)    res_test = send_telegram_signal("🤖 Bot is active and checking markets!")
+    print("Test Message Response:", res_test)
 
-    except Exception as e:
-        print("Error occurred:", e)
 
     # --------------------------------------------------
     # Telegram Test Message (இடைவெளி சரியாக அமைக்கப்பட்டுள்ளது)
     # --------------------------------------------------
-    res_test = send_telegram_signal("🤖 Bot is active and checking markets!")
-    print("Test Message Response:", res_test)
 
     # Wait 15 minutes
     time.sleep(900)
