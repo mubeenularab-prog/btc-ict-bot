@@ -177,8 +177,8 @@ while True:
             print("Telegram Error:", res)
 
         # Telegram Test Message
-        send_telegram_signal("🤖 Bot is active and checking markets!")
-
+        res_test send_telegram_signal("🤖 Bot is active and checking markets!")
+        print("Test Message Response:", res)
     except Exception as e:
         print("Error occurred:", e)
 
