@@ -143,7 +143,7 @@ def analyze_ict_full_suite():
 print("🚀 ICT Engine Bot is running in continuous Auto-Loop mode...")
 
 while True:
-  try:
+    try:
         msg = (
             f"🎯 *BTC ICT FULL SUITE ENGINE*\n"
             f"🎯 *Signal:* {signal}\n"
