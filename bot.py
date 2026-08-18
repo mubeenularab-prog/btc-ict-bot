@@ -1,5 +1,7 @@
 import os
+import signal
 from flask import Flask
+
 from threading import Thread
 
 app = Flask('')
@@ -22,7 +24,7 @@ import requests
 import pandas as pd
 import numpy as np
 import time
-import os
+
 TELEGRAM_TOKEN = "8926120243:AAFn5L_XR9VcbsYUzvdJvg6-N43BmgupjUA"
 CHAT_ID = "6790526469"
 
@@ -144,39 +146,40 @@ print("🚀 ICT Engine Bot is running in continuous Auto-Loop mode...")
 
 while True:
     try:
+        price, signal, eq, ema200, fr, oi, in_discount, sl, tp, ah, al, lh, ll, nyh, nyl, fvg, ob, b_cisd, bear_cisd = analyze_ict_full_suite()
+        zone_str = "Discount Zone 🟢" if in_discount else "Premium Zone 🔴"
+        cisd_str = "Confirmed 🟢" if b_cisd else ("Confirmed 🔴" if bear_cisd else "None ➖")
+
         msg = (
-            f"🎯 *BTC ICT FULL SUITE ENGINE*\n"
-            f"🎯 *Signal:* {signal}\n"
+            f"🎯 *BTC ICT FULL SUITE ENGINE*\n\n"
+            f"🚦 *Signal:* {signal}\n"
             f"💰 *Current Price:* ${price:,.2f}\n"
-            f"🔑 *Zone:* {zone_str}\n"
+            f"📍 *Zone:* {zone_str}\n\n"
             f"🎯 *Projected Target (TP):* ${tp:,.2f}\n"
             f"🛑 *Projected Stop Loss (SL):* ${sl:,.2f}\n"
-            f"⚖️ *Risk to Reward:* 1:2 Ratio\n"
-            f"🏛️ *ICT Core Analysis:*\n"
-            f"📍 *Equilibrium (0.5 Fib):* ${eq:,.2f}\n"
-            f"📈 *200 EMA Filter:* ${ema200:,.2f}\n"
-            f"📉 *FVG Status:* {fvg}\n"
-            f"🕯️ *Order Block (OB):* {ob}\n"
-            f"🌐 *CISD Status:* {cisd_str}\n"
+            f"⚖️ *Risk to Reward:* 1:2 Ratio\n\n"
+            f"📊 *ICT Core Analysis:*\n"
+            f"• *Equilibrium (0.5 Fib):* ${eq:,.2f}\n"
+            f"• *200 EMA Filter:* ${ema200:,.2f}\n"
+            f"• *FVG Status:* {fvg}\n"
+            f"• *Order Block (OB):* {ob}\n"
+            f"• *CISD Status:* {cisd_str}\n\n"
             f"🌐 *Session Ranges (UTC):*\n"
-            f"📍 *Asian Range:* ${al:,.2f} - ${ah:,.2f}\n"
-            f"📍 *London Range:* ${ll:,.2f} - ${lh:,.2f}\n"
-            f"📍 *NY Range:* ${nyl:,.2f} - ${nyh:,.2f}\n"
-            f"📊 *Market Data:*\n"
-            f"💸 *Funding Rate:* {fr:.4f}%\n"
-            f"📊 *Open Interest:* {oi:,.2f} BTC"
+            f"• *Asian Range:* ${al:,.2f} - ${ah:,.2f}\n"
+            f"• *London Range:* ${ll:,.2f} - ${lh:,.2f}\n"
+            f"• *NY Range:* ${nyl:,.2f} - ${nyh:,.2f}\n\n"
+            f"📈 *Market Data:*\n"
+            f"• *Funding Rate:* {fr:.4f}%\n"
+            f"• *Open Interest:* {oi:,.2f} BTC"
         )
-
+        
         res = send_telegram_signal(msg)
-        if res and res.get("ok"):
-            print(f"[{time.strftime('%H:%M:%S')}] Signal sent!")
+        if res.get("ok"):
+            print(f"[{time.strftime('%H:%M:%S')}] Full ICT Signal sent successfully.")
         else:
             print("Telegram Error:", res)
-
+            
     except Exception as e:
         print("Error occurred:", e)
-
-   
-
-    # Wait 5 minutes
-    time.sleep(300)
+        
+    time.sleep(300)  # Wait 5 minutes
