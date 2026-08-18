@@ -177,7 +177,7 @@ while True:
         print("Error occurred:", e)
        
 
-       except Exception as e:
+      except Exception as e:
         print("Error occurred:", e)
 
     # --------------------------------------------------
