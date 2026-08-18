@@ -1,10 +1,12 @@
 import os
 import signal
 from flask import Flask
-
 from threading import Thread
+import requests
+import pandas as pd
+import numpy as np
 
-app = Flask('__name__')
+app = Flask(__name__)
 
 @app.route('/')
 def home():
@@ -12,7 +14,7 @@ def home():
 
 def run():
     port = int(os.environ.get("PORT", 10000))
-    app.run(host='0.0.0.0', port=port)
+    app.run(host="0.0.0.0", port=port)
 
 def keep_alive():
     t = Thread(target=run)
