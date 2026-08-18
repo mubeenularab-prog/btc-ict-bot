@@ -175,6 +175,7 @@ while True:
 
     except Exception as e:
         print("Error occurred:", e)
+       
 
         res = send_telegram_signal(msg)
         if res.get("ok"):
