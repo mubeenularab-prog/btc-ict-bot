@@ -22,8 +22,8 @@ import requests
 import pandas as pd
 import numpy as np
 import time
-
-TELEGRAM_TOKEN = "8926120243:AAEVZ3ilP8PD03bUeqmGzAE6v740PnQXtUI"
+import os
+TELEGRAM_TOKEN = "8926120243:AAFn5L_XR9VcbsYUzvdJvg6-N43BmgupjUA"
 CHAT_ID = "6790526469"
 
 def send_telegram_signal(message):
