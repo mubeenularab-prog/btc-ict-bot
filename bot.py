@@ -28,7 +28,7 @@ CHAT_ID = "6790526469"
 
 def send_telegram_signal(message):
     url = f"https://api.telegram.org/bot{TELEGRAM_TOKEN}/sendMessage"
-    payload = {"chat_id": CHAT_ID, "text":message, "parse_mode": "Markdown"}
+    payload = {"chat_id": CHAT_ID, "text": message, "parse_mode": "Markdown"}
     res = requests.post(url, json=payload)
     return res.json()
 
@@ -169,18 +169,20 @@ while True:
             f"📈 *Market Data:*\n"
             f"• *Funding Rate:* {fr:.4f}%\n"
             f"• *Open Interest:* {oi:,.2f} BTC"
-        )
-        res = send_telegram_signal(msg)
+       res = send_telegram_signal(msg)
         if res.get("ok"):
             print(f"[{time.strftime('%H:%M:%S')}] Signal sent!")
         else:
             print("Telegram Error:", res)
 
-        # Telegram Test Message
-        send_telegram_signal("🤖 Bot is active and checking markets!")
-
     except Exception as e:
         print("Error occurred:", e)
+
+    # --------------------------------------------------
+    # Telegram Test Message (இடைவெளி சரியாக அமைக்கப்பட்டுள்ளது)
+    # --------------------------------------------------
+    res_test = send_telegram_signal("🤖 Bot is active and checking markets!")
+    print("Test Message Response:", res_test)
 
     # Wait 15 minutes
     time.sleep(900)
