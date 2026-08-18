@@ -183,12 +183,14 @@ while True:
         else:
             print("Telegram Error:", res)
         print("Error occurred:", e)    res_test = send_telegram_signal("🤖 Bot is active and checking markets!")
+    except Exception as e:
+        print("Error occurred:", e)
+
+    # --------------------------------------------------
+    # Telegram Test Message
+    # --------------------------------------------------
+    res_test = send_telegram_signal("🤖 Bot is active and checking markets!")
     print("Test Message Response:", res_test)
-
-
-    # --------------------------------------------------
-    # Telegram Test Message (இடைவெளி சரியாக அமைக்கப்பட்டுள்ளது)
-    # --------------------------------------------------
 
     # Wait 15 minutes
     time.sleep(900)
