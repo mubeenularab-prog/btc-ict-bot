@@ -176,9 +176,7 @@ while True:
     except Exception as e:
         print("Error occurred:", e)
 
-    # Telegram Test Message
-    res_test = send_telegram_signal("Bot is active and checking markets!")
-    print("Test Message Response:", res_test)
+   
 
-    # Wait 15 minutes
-    time.sleep(900)
+    # Wait 5 minutes
+    time.sleep(300)
