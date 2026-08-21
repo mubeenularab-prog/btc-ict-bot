@@ -1,10 +1,10 @@
 import os
-import signal
 from flask import Flask
 from threading import Thread
 import requests
 import pandas as pd
 import numpy as np
+import time
 
 app = Flask(__name__)
 
@@ -17,15 +17,13 @@ def run():
     app.run(host="0.0.0.0", port=port)
 
 def keep_alive():
-    t = Thread(target=run)
+    t = Thread(target=run, daemon=True)
     t.start()
 
-# Flask Web Server-ஐ இயக்குகிறது
-keep_alive()
-import requests
-import pandas as pd
-import numpy as np
-import time
+if __name__ == "__main__":
+    keep_alive()
+    # ... your bot's main loop goes here
+
 
 TELEGRAM_TOKEN = "8926120243:AAFn5L_XR9VcbsYUzvdJvg6-N43BmgupjUA"
 CHAT_ID = "6790526469"
@@ -184,4 +182,4 @@ while True:
     except Exception as e:
         print("Error occurred:", e)
         
-    time.sleep(900)  # Wait 15 minutes
+    time.sleep(300)  # Wait 5 minutes
